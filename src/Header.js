@@ -3,13 +3,15 @@ import styled from 'styled-components';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import {Link} from 'react-router-dom';
+
 
 const Header = () => {
     return (
         <Container>
 
             <HeaderLogo>
-                <img src={"https://mikekitko.com/wp-content/uploads/2019/10/amazon-logo-white.png"}></img>
+                <img src={"https://mikekitko.com/wp-content/uploads/2019/10/amazon-logo-white.png"} alt="logo"></img>
             </HeaderLogo>
 
             <HeaderOptionAddress>
@@ -39,9 +41,12 @@ const Header = () => {
                     <OptionLineTwo>&Orders</OptionLineTwo>
                 </HeaderOption>
 
+            
                 <HeaderOptionCart>
-                    <ShoppingBasketIcon/>
-                    <CartCount>4</CartCount>
+                    <Link to="/cart">
+                        <ShoppingBasketIcon/>
+                        <CartCount>4</CartCount>
+                    </Link>
                 </HeaderOptionCart>
 
             </HeaderNavItetms>
@@ -114,8 +119,12 @@ const HeaderOption = styled.div`
 `
 const HeaderOptionCart = styled.div`
     display: flex;
-    align-items: center;
-    padding-right: 9px;
+    a{
+        display: flex;
+        align-items: center;
+        color: white;
+        text-decoration: none;
+    }
 `
 const CartCount = styled.div`
     padding-left: 4px;
