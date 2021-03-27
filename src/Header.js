@@ -11,7 +11,9 @@ const Header = () => {
         <Container>
 
             <HeaderLogo>
+                <Link to="/">
                 <img src={"https://mikekitko.com/wp-content/uploads/2019/10/amazon-logo-white.png"} alt="logo"></img>
+                </Link>
             </HeaderLogo>
 
             <HeaderOptionAddress>
