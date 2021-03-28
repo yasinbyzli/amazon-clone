@@ -1,23 +1,27 @@
 import React from 'react'
 import styled from 'styled-components';
 
-function Product() {
+function Product(props) {
     return (
         <Container>
 
             <Tittle>
-            Apple iPad Mini (Wi-Fi, 64GB) - Space Gray (Latest Model)
+                {props.title}
             </Tittle>
 
             <Price>
-                $1449
+                ${props.price}
             </Price>
 
             <Rating>
-                ⭐⭐⭐⭐⭐
+                {
+                    Array(props.rating)
+                    .fill()
+                    .map(rating => <p>⭐</p>)
+                }
             </Rating>
 
-            <Image src="https://images-na.ssl-images-amazon.com/images/I/71zMHkHX6rL._AC_SY355_.jpg">
+            <Image src={props.image}>
 
             </Image>
 
@@ -53,7 +57,7 @@ const Price = styled.span`
 `
 
 const Rating = styled.div`
-
+    display: flex;
 `
 
 const Image = styled.img`
