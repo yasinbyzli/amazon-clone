@@ -1,32 +1,56 @@
 import React from 'react'
 import styled from 'styled-components';
+import { db } from './firebase';
 
-function Product(props) {
+
+function Product({title, price, rating, image, id}) {
+
+    const addTocart = () => {
+        const cartItem = db.collection("cartItems").doc(id);
+        cartItem.get()
+        .then((doc) => {
+            if(doc.exists){
+                cartItem.update({
+                    quantity: doc.data().quantity + 1
+                })
+            }else {
+                db.collection("cartItems").doc(id).set({
+                    name : title,
+                    image: image,
+                    price: price,
+                    quantity: 1
+                })
+            }
+        })
+    }
+
     return (
         <Container>
 
             <Tittle>
-                {props.title}
+                {title}
             </Tittle>
 
             <Price>
-                ${props.price}
+                ${price}
             </Price>
 
             <Rating>
                 {
-                    Array(props.rating)
+                    Array(rating)
                     .fill()
                     .map(rating => <p>⭐</p>)
                 }
             </Rating>
 
-            <Image src={props.image}>
+            <Image src={image}>
 
             </Image>
 
             <ActionSection>
-                <AddToCartButton>
+                <AddToCartButton
+                    onClick = {addTocart}
+                >
                     Add to Cart
                 </AddToCartButton>
             </ActionSection>
